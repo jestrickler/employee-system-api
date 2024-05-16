@@ -12,6 +12,7 @@ import java.util.List;
 public interface EmployeeApi {
 
     @PostMapping()
+    @ResponseStatus(HttpStatus.CREATED)
     Employee createEmployee(@RequestBody Employee employee);
 
     @GetMapping()
