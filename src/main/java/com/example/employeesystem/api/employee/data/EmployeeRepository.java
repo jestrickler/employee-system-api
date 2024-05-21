@@ -1,4 +1,4 @@
-package com.example.employeesystem.api.employee.domain;
+package com.example.employeesystem.api.employee.data;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

@@ -1,7 +1,7 @@
 package com.example.employeesystem.api.employee.business;
 
-import com.example.employeesystem.api.employee.domain.EmployeeEntity;
-import com.example.employeesystem.api.employee.domain.EmployeeRepository;
+import com.example.employeesystem.api.employee.data.EmployeeEntity;
+import com.example.employeesystem.api.employee.data.EmployeeRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 

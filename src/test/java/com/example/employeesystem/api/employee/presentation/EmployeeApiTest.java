@@ -80,4 +80,21 @@ public class EmployeeApiTest {
                 .andExpect(content().string(objectMapper.writeValueAsString(employeeList)));
     }
 
+    @Test
+    public void getById_returnsEmployee() throws Exception {
+        Employee employee = Employee.builder()
+                .id(20L)
+                .firstName("John")
+                .lastName("Doe")
+                .email("john.doe@example.com")
+                .build();
+        Mockito.when(employeeService.getEmployee(20L)).thenReturn(employee);
+
+        ResultActions response = mockMvc.perform(get("/api/v1/employees/{id}", 20L));
+
+        response.andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().string(objectMapper.writeValueAsString(employee)));
+    }
+
 }

@@ -9,6 +9,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
@@ -57,6 +58,52 @@ public class EmployeeControllerTest {
 
         Assertions.assertThat(foundEmployeeList).isNotNull();
         Assertions.assertThat(foundEmployeeList.size()).isEqualTo(2);
+    }
+
+    @Test
+    public void getEmployee_returnsEmployee() throws Exception {
+        Employee employee = Employee.builder()
+                .id(20L)
+                .firstName("John")
+                .lastName("Doe")
+                .email("john.doe@example.com")
+                .build();
+        Mockito.when(employeeService.getEmployee(20L)).thenReturn(employee);
+
+        ResponseEntity<Employee> response = employeeController.getEmployee(20L);
+
+        Assertions.assertThat(response.getBody()).isEqualTo(employee);
+    }
+
+    @Test
+    public void updateEmployee_returnsEmployee() throws Exception {
+        Employee employee = Employee.builder()
+                .id(30L)
+                .firstName("John")
+                .lastName("Doe")
+                .email("john.doe@example.com")
+                .build();
+        Mockito.when(employeeService.updateEmployee(30L, employee)).thenReturn(employee);
+
+        ResponseEntity<Employee> response = employeeController.updateEmployee(30L, employee);
+
+        Assertions.assertThat(response.getBody()).isEqualTo(employee);
+    }
+
+    @Test
+    public void deleteEmployee_removesEmployee() throws Exception {
+        Employee employee = Employee.builder()
+                .id(40L)
+                .firstName("John")
+                .lastName("Doe")
+                .email("john.doe@example.com")
+                .build();
+        Mockito.doNothing().when(employeeService).deleteEmployee(40L);
+
+        employeeController.deleteEmployee(40L);
+
+        Mockito.verify(employeeService, Mockito.times(1)).deleteEmployee(40L);
+
     }
 
 }

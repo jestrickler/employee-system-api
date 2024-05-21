@@ -1,4 +1,4 @@
-package com.example.employeesystem.api.employee.domain;
+package com.example.employeesystem.api.employee.data;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

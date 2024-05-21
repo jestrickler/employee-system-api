@@ -1,4 +1,4 @@
-package com.example.employeesystem.api.employee.domain;
+package com.example.employeesystem.api.employee.data;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
