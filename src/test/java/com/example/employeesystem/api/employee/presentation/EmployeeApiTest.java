@@ -17,8 +17,7 @@ import org.springframework.test.web.servlet.ResultActions;
 
 import java.util.List;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -96,5 +95,15 @@ public class EmployeeApiTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string(objectMapper.writeValueAsString(employee)));
     }
+
+    @Test
+    public void delete_removesEmployee() throws Exception {
+        Mockito.doNothing().when(employeeService).deleteEmployee(40L);
+
+        ResultActions response = mockMvc.perform(delete("/api/v1/employees/{id}", 40L));
+
+        Mockito.verify(employeeService, Mockito.times(1)).deleteEmployee(40L);
+    }
+
 
 }

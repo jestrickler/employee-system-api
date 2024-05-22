@@ -92,12 +92,6 @@ public class EmployeeControllerTest {
 
     @Test
     public void deleteEmployee_removesEmployee() throws Exception {
-        Employee employee = Employee.builder()
-                .id(40L)
-                .firstName("John")
-                .lastName("Doe")
-                .email("john.doe@example.com")
-                .build();
         Mockito.doNothing().when(employeeService).deleteEmployee(40L);
 
         employeeController.deleteEmployee(40L);
