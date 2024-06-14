@@ -33,12 +33,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         List<EmployeeEntity> employeeEntityEntities = employeeRepository.findAll();
         return employeeEntityEntities
                 .stream()
-                .map(e -> new Employee(
-                        e.getId(),
-                        e.getFirstName(),
-                        e.getLastName(),
-                        e.getEmail()
-                )).collect(Collectors.toList());
+                .map(e -> modelMapper.map(e, Employee.class)).collect(Collectors.toList());
     }
 
     @Override
